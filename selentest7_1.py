@@ -62,20 +62,17 @@ class VkTest2(unittest.TestCase):
         
         driver2.open_my_messages()
         
-        driver.click_by_xpath("//li[@id='l_msg']")        # self.driver == driver 
-        driver.wait_by_xpath("//div[@id='im_bar']")
-        driver.driver.find_element_by_xpath("//div[@id='im_bar']")
-        el=driver.click_by_xpath("//div[@id='im_filter_out']")
-        el.send_keys(config['Vk.com']['user_name']) # find user to write a message
-        driver.wait_by_xpath("//div[@id='im_friends']")
+        driver.click_by_xpath("//span[text()='My Friends']") # self.driver == driver 
         
-        driver.click_by_xpath("//div[@id='im_friends']/div[position()=1]") # select user
-        driver.wait_by_xpath("//div[@id='im_controls_wrap']")
-        
-        elem=driver.click_by_xpath("//div[@id='im_controls_wrap']//div[@id='im_peer_controls']/table/tbody/tr/td[@id='im_write_form']/div[@id='im_texts']") # send messages
+        driver.wait_by_xpath("//div[@id='main_class']//div[@id='friends_list']//div[@id='list_content']/div/div[position()=1]") # send messages first friend in the list
+        driver.driver.find_element_by_xpath("//div[@id='main_class']//div[@id='friends_list']//div[@id='list_content']/div/div[position()=1]")
+        driver.click_by_xpath("//div[@class='actions fl_r']/a[text()='Send a message']")
+        driver.wait_by_xpath("//div[@id='mail_box_editable']")
+        elem = driver.click_by_xpath("//div[@id='mail_box_editable']")
         elem.send_keys("Hi,Vika!")
-        self.driver.click_by_xpath("//div[@id='im_send_wrap']/button[@id='im_send']")
-               
+        
+        self.driver.click_by_xpath("//button[@id='mail_box_send']")
+        
         driver2.wait_by_xpath("//span[text()='+1']",10)
         
         elem2=driver2.click_by_xpath(driver2.myMessXpath)
