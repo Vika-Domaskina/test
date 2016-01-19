@@ -146,7 +146,9 @@ class VkTest2(unittest.TestCase):
             raise ValueError ('Not found user who liked foto')
        
         driver.wait_by_xpath("//div[@id='wk_box']/a[@id='wk_close_link']")
+        
         driver.click_by_xpath("//div[@id='wk_box']/a[@id='wk_close_link']")
+        
         driver.wait_by_xpath("//div[@id='pv_wide']/div[@id='pv_like_wrap']/span[@id='pv_like_link']") #dislike foto 
         driver.driver.execute_script("window.scrollTo(0, 150)")
         driver.click_by_xpath("//div[@id='pv_wide']/div[@id='pv_like_wrap']/span[@id='pv_like_link']")
